@@ -13,15 +13,19 @@ suffix="activation.pt.norm"
 # directory where the activations are saved
 out_dir = sys.argv[1]
 
+if len(sys.argv) == 2:
+    sv=470
+else:
+    sv=int(sys.argv[2])
+
+print("*** Results using SVCCA keeping {0} dims".format(sv))
+
 from os import listdir
 from os.path import isfile, join
 f = [f for f in listdir(out_dir) if isfile(join(out_dir, f)) and f.endswith(suffix)]
 
-print("Comparing pairwise between:")
+print("*** Comparing pairwise between:")
 print(f)
-
-sv=470
-print("Results using SVCCA keeping {0} dims".format(sv))
 
 svcca = 0
 cnt = 0
